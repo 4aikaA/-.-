@@ -1,0 +1,2302 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Примеры работ - Игорь Кузнецов | Автоматизация, монтаж и обслуживание инженерных систем</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: #ffffff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: #ffffff;
+            color: #1a1a2e;
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1a1a2e;
+            text-decoration: none;
+        }
+        
+        .logo .surname {
+            color: #ff6b35;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: #0d7377;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+        
+        .nav-menu a:hover {
+            background: #0d7377;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(13, 115, 119, 0.3);
+        }
+
+        /* Паровозик в хедере */
+        .header-train {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 20px;
+        }
+
+        .train-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .train-icon {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2478%) hue-rotate(330deg) brightness(118%) contrast(119%);
+            transition: all 0.3s ease;
+        }
+
+        .train-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+            filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2478%) hue-rotate(330deg) brightness(118%) contrast(119%);
+        }
+
+        .train-connector {
+            width: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6b35, #ff8c42);
+            border-radius: 1px;
+            position: relative;
+        }
+
+        .train-connector::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #ff6b35, #ff8c42);
+            border-radius: 1px;
+            opacity: 0.3;
+        }
+
+        /* Векторные иконки для хедера */
+        .hero-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .hero-icons a { pointer-events: auto; }
+        
+        .hero-icon {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            color: #1a1a2e;
+            opacity: 0.2;
+            filter: drop-shadow(0 1px 4px rgba(26, 26, 46, 0.15));
+            transition: all 0.3s ease;
+        }
+        
+        .hero-icon:hover {
+            transform: scale(1.1);
+            color: #0d7377;
+            filter: drop-shadow(0 4px 12px rgba(13, 115, 119, 0.3));
+        }
+        
+        /* Расположение иконок по хедеру */
+        .icon-1 { top: 20%; left: 15%; }
+        .icon-2 { top: 25%; right: 20%; }
+        .icon-3 { top: 45%; left: 10%; }
+        .icon-4 { top: 50%; right: 15%; }
+        .icon-5 { top: 70%; left: 20%; }
+        .icon-6 { top: 75%; right: 10%; }
+        
+        /* Анимация для иконок */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        .hero-icon {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .icon-1 { animation-delay: 0s; }
+        .icon-2 { animation-delay: 0.7s; }
+        .icon-3 { animation-delay: 1.4s; }
+        .icon-4 { animation-delay: 2.1s; }
+        .icon-5 { animation-delay: 2.8s; }
+        .icon-6 { animation-delay: 3.5s; }
+
+        /* Page Title */
+        .page-title {
+            background: #1a1a2e;
+            color: #ffffff;
+            text-align: center;
+            padding: 120px 20px 80px;
+            margin-top: 80px;
+        }
+
+        .page-title h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .page-title p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Счетчик примеров работ */
+        .examples-counter {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .counter-main {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .counter-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #ff6b35;
+            text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        .counter-text {
+            font-size: 1.2rem;
+            color: #ffffff;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .counter-sub {
+            text-align: center;
+        }
+
+        .counter-sub-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Examples Grid */
+        .examples-section {
+            padding: 80px 0;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .example-card {
+            background: #ffffff;
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(26,26,46,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .example-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(26,26,46,0.12);
+        }
+
+        .example-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .example-card .example-content {
+            padding: 20px;
+        }
+
+        .example-card h3 {
+            font-size: 1.2rem;
+            color: #1a1a2e;
+            margin-bottom: 10px;
+        }
+
+        .example-card p {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .example-card .copyright {
+            color: #666;
+            font-size: 0.85rem;
+            font-style: italic;
+            margin-top: 15px;
+            opacity: 0.8;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: relative;
+            margin: 5% auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .modal-description {
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .modal-copyright {
+            color: #666;
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .modal-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .modal-nav button {
+            background: #0d7377;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .modal-nav button:hover {
+            background: #1a1a2e;
+            transform: translateY(-2px);
+        }
+
+        .modal-nav button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #1a1a2e;
+        }
+
+        /* Back Button */
+        .back-button {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .back-button a {
+            display: inline-block;
+            background: linear-gradient(135deg, #0d7377, #1a1a2e);
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid #0d7377;
+            box-shadow: 0 4px 15px rgba(13, 115, 119, 0.3);
+        }
+
+        .back-button a:hover {
+            background: linear-gradient(135deg, #ff6b35, #0d7377);
+            color: #fff;
+            border-color: #ff6b35;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-title h1 { font-size: 2.2rem; }
+            .examples-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+            .modal-content { width: 95%; margin: 10% auto; }
+            .modal-title { font-size: 1.5rem; }
+            
+            .examples-counter {
+                gap: 12px;
+                padding: 20px;
+                margin-top: 20px;
+            }
+            
+            .counter-main {
+                gap: 12px;
+            }
+            
+            .counter-number {
+                font-size: 3rem;
+            }
+            
+            .counter-text {
+                font-size: 1.1rem;
+            }
+            
+            .counter-sub-text {
+                font-size: 0.9rem;
+            }
+            
+            /* Адаптация паровозика для планшетов */
+            .header-train {
+                margin: 0 15px;
+                gap: 6px;
+            }
+            
+            .train-icon {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .train-connector {
+                width: 16px;
+            }
+            
+            /* Адаптация векторных иконок для планшетов */
+            .hero-icon {
+                width: 18px;
+                height: 18px;
+            }
+            
+            /* Адаптация мессенджеров для планшетов */
+            .header-messengers {
+                gap: 12px;
+                margin-left: 15px;
+            }
+            
+            .header-messengers .messenger-link {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .header-messengers .messenger-icon {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title h1 { font-size: 1.8rem; }
+            .examples-grid { grid-template-columns: 1fr; }
+            .modal-content { padding: 15px; }
+            .modal-nav { flex-direction: column; gap: 15px; }
+            
+            .examples-counter {
+                padding: 15px;
+                margin-top: 15px;
+                gap: 10px;
+            }
+            
+            .counter-main {
+                gap: 10px;
+            }
+            
+            .counter-number {
+                font-size: 2.5rem;
+            }
+            
+            .counter-text {
+                font-size: 1rem;
+            }
+            
+            .counter-sub-text {
+                font-size: 0.8rem;
+            }
+            
+            /* Адаптация паровозика для мобильных */
+            .header-train {
+                margin: 0 10px;
+                gap: 4px;
+            }
+            
+            .train-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .train-connector {
+                width: 12px;
+                height: 1px;
+            }
+            
+            .train-connector::before {
+                height: 4px;
+                top: -1px;
+            }
+            
+            /* Адаптация мессенджеров для мобильных */
+            .header-messengers {
+                gap: 8px;
+                margin-left: 8px;
+            }
+            
+            .header-messengers .messenger-link {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .header-messengers .messenger-icon {
+                width: 14px;
+                height: 14px;
+            }
+            
+            /* Адаптация векторных иконок для мобильных */
+            .hero-icon {
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        /* Номер телефона и иконки мессенджеров в хедере */
+        .header-messengers {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: 20px;
+        }
+
+        .header-phone {
+            color: #0d7377;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 8px 12px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            background: rgba(13, 115, 119, 0.1);
+            border: 1px solid transparent;
+        }
+
+        .header-phone:hover {
+            background: #0d7377;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(13, 115, 119, 0.3);
+            border-color: #0d7377;
+        }
+
+        .header-phone:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(13, 115, 119, 0.2);
+        }
+
+        .header-messengers .messenger-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-messengers .messenger-link:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: #0d7377;
+        }
+
+        .header-messengers .whatsapp-link:hover {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            border-color: #25d366;
+        }
+
+        .header-messengers .telegram-link:hover {
+            background: linear-gradient(135deg, #0088cc, #005580);
+            border-color: #0088cc;
+        }
+
+        .header-messengers .messenger-icon {
+            width: 20px;
+            height: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .header-messengers .messenger-link:hover .messenger-icon {
+            filter: brightness(0) invert(1);
+            transform: scale(1.1);
+        }
+
+        /* Анимация пульсации для мессенджеров */
+        @keyframes messengerPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .header-messengers .messenger-link:hover {
+            animation: messengerPulse 0.6s ease-in-out;
+        }
+
+        /* Дополнительные эффекты для мессенджеров */
+        .header-messengers .messenger-link:active {
+            transform: translateY(-1px) scale(0.95);
+            transition: all 0.1s ease;
+        }
+
+        /* Индикатор онлайн статуса */
+        .header-messengers .messenger-link::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 8px;
+            height: 8px;
+            background: #25d366;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .header-messengers .messenger-link:hover::before {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .header-messengers .telegram-link::before {
+            background: #0088cc;
+        }
+
+        /* Floating Icons */
+        .hero-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .hero-icon {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-icon svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .icon-1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .icon-2 { top: 60%; left: 15%; animation-delay: 1s; }
+        .icon-3 { top: 30%; right: 20%; animation-delay: 2s; }
+        .icon-4 { top: 70%; right: 10%; animation-delay: 3s; }
+        .icon-5 { top: 15%; left: 60%; animation-delay: 4s; }
+        .icon-6 { top: 80%; left: 70%; animation-delay: 5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(10px) rotate(240deg); }
+        }
+
+        /* Кнопка "Быстрая заявка" */
+        .quick-request {
+            position: fixed;
+            bottom: 30px;
+            right: 100px;
+            width: 80px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 1;
+            transform: translateY(0);
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .quick-request:hover {
+            background: linear-gradient(135deg, #ff8c42, #ff6b35);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+        }
+
+        .quick-request:active {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .quick-request svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .quick-request-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        /* Кнопка "Вверх" */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0d7377, #1a1a2e);
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 25px rgba(13, 115, 119, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .scroll-to-top:hover {
+            background: linear-gradient(135deg, #ff6b35, #0d7377);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+        }
+
+        .scroll-to-top.show {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* Адаптивность для кнопок */
+        @media (max-width: 768px) {
+            .quick-request {
+                bottom: 25px;
+                right: 90px;
+                width: 70px;
+                height: 55px;
+            }
+            
+            .quick-request svg {
+                width: 18px;
+                height: 18px;
+            }
+            
+            .quick-request-text {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quick-request {
+                bottom: 20px;
+                right: 80px;
+                width: 65px;
+                height: 50px;
+            }
+            
+            .quick-request svg {
+                width: 16px;
+                height: 16px;
+            }
+            
+            .quick-request-text {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Стили для модального окна */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-50px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #0d7377, #13a6b2);
+            color: white;
+            padding: 25px 30px 20px;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 { margin: 0; font-size: 1.4rem; font-weight: 600; }
+        .modal-close {
+            color: white; font-size: 28px; font-weight: bold; cursor: pointer; line-height: 1; transition: all 0.3s ease;
+        }
+        .modal-close:hover { color: #ff6b35; transform: scale(1.1); }
+        .modal-body { padding: 30px; }
+        .modal-body .form-group { margin-bottom: 20px; }
+        .modal-body .form-group label {
+            display: block; margin-bottom: 8px; font-weight: 600; color: #1a1a2e; font-size: 1rem;
+        }
+        .modal-body .form-group input, .modal-body .form-group textarea {
+            width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; transition: all 0.3s ease; box-sizing: border-box;
+        }
+        .modal-body .form-group input:focus, .modal-body .form-group textarea:focus {
+            outline: none; border-color: #0d7377; box-shadow: 0 0 0 3px rgba(13, 115, 119, 0.1);
+        }
+        .modal-body .form-group textarea { resize: vertical; min-height: 100px; }
+        .form-actions { display: flex; gap: 15px; margin-top: 25px; }
+        .form-actions .submit-btn {
+            flex: 2; padding: 15px 25px; background: linear-gradient(135deg, #0d7377, #13a6b2); color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;
+        }
+        .form-actions .submit-btn:hover {
+            background: linear-gradient(135deg, #13a6b2, #0d7377); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(13, 115, 119, 0.3);
+        }
+        .form-actions .cancel-btn {
+            flex: 1; padding: 15px 20px; background: #f8f9fa; color: #6c757d; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;
+        }
+        .form-actions .cancel-btn:hover { background: #e9ecef; border-color: #adb5bd; color: #495057; }
+
+        /* Адаптивность для модального окна */
+        @media (max-width: 768px) {
+            .modal-content { width: 95%; margin: 10% auto; }
+            .modal-header { padding: 20px 25px 15px; }
+            .modal-header h3 { font-size: 1.3rem; }
+            .modal-body { padding: 25px; }
+            .form-actions { flex-direction: column; gap: 10px; }
+            .form-actions .submit-btn, .form-actions .cancel-btn { flex: none; }
+            
+            /* Адаптация навигации для планшетов */
+            .nav-menu {
+                gap: 10px;
+            }
+            
+            .nav-menu a {
+                padding: 5px 10px;
+                font-size: 0.8rem;
+            }
+            
+            /* Адаптация паровозика для планшетов */
+            .header-train {
+                margin: 0 15px;
+                gap: 6px;
+            }
+            
+            .train-icon {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .train-connector {
+                width: 16px;
+            }
+            
+            /* Адаптация мессенджеров для планшетов */
+            .header-messengers {
+                gap: 12px;
+                margin-left: 15px;
+            }
+            
+            .header-messengers .messenger-link {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .header-messengers .messenger-icon {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-content { width: 98%; margin: 5% auto; }
+            .modal-header { padding: 18px 20px 12px; }
+            .modal-header h3 { font-size: 1.2rem; }
+            .modal-body { padding: 20px; }
+            .modal-body .form-group input, .modal-body .form-group textarea { padding: 10px 12px; font-size: 16px; }
+            
+            /* Адаптация навигации для мобильных */
+            .nav-menu {
+                gap: 8px;
+            }
+            
+            .nav-menu a {
+                padding: 4px 8px;
+                font-size: 0.75rem;
+            }
+            
+            /* Адаптация паровозика для мобильных */
+            .header-train {
+                margin: 0 10px;
+                gap: 4px;
+            }
+            
+            .train-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .train-connector {
+                width: 12px;
+                height: 1px;
+            }
+            
+            .train-connector::before {
+                height: 4px;
+                top: -1px;
+            }
+            
+            /* Адаптация мессенджеров для мобильных */
+            .header-messengers {
+                gap: 8px;
+                margin-left: 8px;
+            }
+            
+            .header-messengers .messenger-link {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .header-messengers .messenger-icon {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+        /* Стили для поля телефона */
+        .modal-body .form-group input[type="tel"] { font-family: 'Courier New', monospace; letter-spacing: 1px; }
+        /* Плейсхолдер для телефона */
+        .modal-body .form-group input[type="tel"]::placeholder { color: #adb5bd; font-style: italic; }
+
+        /* Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, #1a1a2e, #0d7377);
+            color: #ffffff;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            color: #ff6b35;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .footer-section p {
+            color: #e0e0e0;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ff6b35;
+        }
+
+        .footer-section a[href*="mundoclimatico.es"] {
+            display: inline-block;
+            color: #47C5AD;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 6px 12px;
+            background: rgba(71, 197, 173, 0.1);
+            border: 1px solid #47C5AD;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-section a[href*="mundoclimatico.es"]:hover {
+            background: #47C5AD;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(71, 197, 173, 0.3);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .footer-copyright p {
+            color: #b0b0b0;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .footer-copyright p:first-child {
+            color: #ff6b35;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                padding: 50px 0 25px;
+                margin-top: 60px;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer {
+                padding: 40px 0 20px;
+                margin-top: 50px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+
+        /* Стили для номера телефона в футере */
+        .footer-phone {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .footer-phone:hover {
+            color: #0d7377;
+            text-decoration: underline;
+        }
+
+        /* Active nav item */
+        .nav-menu a.active { background: rgba(13,115,119,0.12); color: #0d7377; box-shadow: none; border: 1px solid rgba(13,115,119,0.25); }
+    </style>
+    
+    <!-- SVG иконки для инженерных систем -->
+    <svg style="display: none;">
+        <!-- Насос/компрессор -->
+        <symbol id="icon-bomba" viewBox="0 0 24 24">
+            <rect x="4" y="8" width="16" height="8" rx="2" fill="currentColor"/>
+            <circle cx="12" cy="12" r="2" fill="white"/>
+            <rect x="10" y="6" width="4" height="2" fill="currentColor"/>
+            <rect x="10" y="16" width="4" height="2" fill="currentColor"/>
+        </symbol>
+        <!-- Кондиционер -->
+        <symbol id="icon-cond" viewBox="0 0 24 24">
+            <rect x="2" y="6" width="20" height="12" rx="2" fill="currentColor"/>
+            <rect x="4" y="8" width="16" height="8" fill="white"/>
+            <circle cx="8" cy="12" r="1" fill="currentColor"/>
+            <circle cx="16" cy="12" r="1" fill="currentColor"/>
+        </symbol>
+        <!-- Вентилятор -->
+        <symbol id="icon-fan" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="8" fill="currentColor"/>
+            <circle cx="12" cy="12" r="4" fill="white"/>
+            <rect x="11" y="2" width="2" height="6" fill="white"/>
+            <rect x="11" y="16" width="2" height="6" fill="white"/>
+            <rect x="2" y="11" width="6" height="2" fill="white"/>
+            <rect x="16" y="11" width="6" height="2" fill="white"/>
+        </symbol>
+        <!-- Насос -->
+        <symbol id="icon-pump" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="6" fill="currentColor"/>
+            <circle cx="12" cy="12" r="3" fill="white"/>
+            <rect x="9" y="6" width="6" height="2" fill="currentColor"/>
+            <rect x="9" y="16" width="6" height="2" fill="currentColor"/>
+        </symbol>
+        <!-- Клапан -->
+        <symbol id="icon-valve" viewBox="0 0 24 24">
+            <rect x="8" y="4" width="8" height="16" rx="1" fill="currentColor"/>
+            <rect x="6" y="8" width="12" height="8" fill="white"/>
+            <rect x="8" y="10" width="8" height="4" fill="currentColor"/>
+        </symbol>
+        <!-- Датчик -->
+        <symbol id="icon-sensor" viewBox="0 0 24 24">
+            <rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/>
+            <circle cx="12" cy="12" r="3" fill="white"/>
+            <rect x="11" y="4" width="2" height="3" fill="currentColor"/>
+            <rect x="11" y="17" width="2" height="3" fill="currentColor"/>
+        </symbol>
+    </svg>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: #ffffff;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Header */
+        .header {
+            background: #ffffff;
+            color: #1a1a2e;
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1a1a2e;
+            text-decoration: none;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .logo .surname {
+            color: #ff6b35;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-menu a {
+            color: #0d7377;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        
+        .nav-menu a:hover {
+            background: #0d7377;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(13, 115, 119, 0.3);
+        }
+
+        /* Паровозик в хедере */
+        .header-train {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 20px;
+        }
+
+        .train-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .train-icon {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2478%) hue-rotate(330deg) brightness(118%) contrast(119%);
+            transition: all 0.3s ease;
+        }
+
+        .train-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+            filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2478%) hue-rotate(330deg) brightness(118%) contrast(119%);
+        }
+
+        .train-connector {
+            width: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6b35, #ff8c42);
+            border-radius: 1px;
+            position: relative;
+        }
+
+        .train-connector::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #ff6b35, #ff8c42);
+            border-radius: 1px;
+            opacity: 0.3;
+        }
+
+        /* Анимация паровозика */
+        @keyframes trainMove {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(2px); }
+            100% { transform: translateX(0); }
+        }
+
+        .header-train:hover {
+            animation: trainMove 0.6s ease-in-out;
+        }
+
+        .train-item:hover .train-icon {
+            animation: trainMove 0.4s ease-in-out;
+        }
+
+        /* Иконки мессенджеров в хедере */
+        .header-messengers {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: 20px;
+        }
+
+        .header-messengers .messenger-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-messengers .messenger-link:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: #0d7377;
+        }
+
+        .header-messengers .whatsapp-link:hover {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            border-color: #25d366;
+        }
+
+        .header-messengers .telegram-link:hover {
+            background: linear-gradient(135deg, #0088cc, #005580);
+            border-color: #0088cc;
+        }
+
+        .header-messengers .messenger-icon {
+            width: 20px;
+            height: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .header-messengers .messenger-link:hover .messenger-icon {
+            filter: brightness(0) invert(1);
+            transform: scale(1.1);
+        }
+
+        /* Анимация пульсации для мессенджеров */
+        @keyframes messengerPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .header-messengers .messenger-link:hover {
+            animation: messengerPulse 0.6s ease-in-out;
+        }
+
+        /* Дополнительные эффекты для мессенджеров */
+        .header-messengers .messenger-link:active {
+            transform: translateY(-1px) scale(0.95);
+            transition: all 0.1s ease;
+        }
+
+        /* Floating Icons */
+        .hero-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .hero-icon {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-icon svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .icon-1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .icon-2 { top: 60%; left: 15%; animation-delay: 1s; }
+        .icon-3 { top: 30%; right: 20%; animation-delay: 2s; }
+        .icon-4 { top: 70%; right: 10%; animation-delay: 3s; }
+        .icon-5 { top: 15%; left: 60%; animation-delay: 4s; }
+        .icon-6 { top: 80%; left: 70%; animation-delay: 5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(10px) rotate(240deg); }
+        }
+
+        /* Responsive стили */
+        @media (max-width: 768px) {
+            /* Адаптация логотипа для планшетов */
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            /* Адаптация паровозика для планшетов */
+            .header-train {
+                margin: 0 15px;
+                gap: 6px;
+            }
+            
+            .train-icon {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .train-connector {
+                width: 16px;
+            }
+            
+            /* Адаптация мессенджеров для планшетов */
+            .header-messengers {
+                gap: 12px;
+                margin-left: 15px;
+            }
+
+            .header-messengers .messenger-link {
+                width: 36px;
+                height: 36px;
+            }
+
+            .header-messengers .messenger-icon {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Адаптация логотипа для мобильных */
+            .logo {
+                font-size: 1.1rem;
+            }
+            
+            /* Адаптация паровозика для мобильных */
+            .header-train {
+                margin: 0 10px;
+                gap: 4px;
+            }
+            
+            .train-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .train-connector {
+                width: 12px;
+                height: 1px;
+            }
+            
+            .train-connector::before {
+                height: 4px;
+                top: -1px;
+            }
+            
+            /* Адаптация мессенджеров для мобильных */
+            .header-messengers {
+                gap: 8px;
+                margin-left: 8px;
+            }
+
+            .header-messengers .messenger-link {
+                width: 28px;
+                height: 28px;
+            }
+
+            .header-messengers .messenger-icon {
+                width: 14px;
+                height: 14px;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+        <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="./index.html" class="logo">Игорь <span class="surname">Кузнецов</span></a>
+                
+                <!-- Паровозик из картинок -->
+                <a href="./index.html#top" class="header-train" title="На главную">
+                    <div class="train-item">
+                        <img src="./img/bomba.png" alt="Насос" class="train-icon">
+                    </div>
+                    <div class="train-connector"></div>
+                    <div class="train-item">
+                        <img src="./img/cond.png" alt="Кондиционер" class="train-icon">
+                    </div>
+                    <div class="train-connector"></div>
+                    <div class="train-item">
+                        <img src="./img/fan.png" alt="Вентилятор" class="train-icon">
+                    </div>
+                </a>
+                
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="./index.html#services">Услуги</a></li>
+                        <li><a href="./about.html">О себе</a></li>
+                        <li><a href="./examples.html">Примеры работ</a></li>
+                        <li><a href="./cooperation.html">Сотрудничество</a></li>
+                        <li><a href="./index.html#contact">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Иконки мессенджеров в хедере -->
+                <div class="header-messengers">
+                    <a href="https://wa.me/79216433297" target="_blank" rel="noopener noreferrer" class="messenger-link whatsapp-link" title="WhatsApp">
+                        <img src="./img/whatsapp.svg" alt="WhatsApp" class="messenger-icon">
+                    </a>
+                    <a href="https://t.me/igor_kuznetsov_hvac" target="_blank" rel="noopener noreferrer" class="messenger-link telegram-link" title="Telegram">
+                        <img src="./img/telegram-svgrepo-com.svg" alt="Telegram" class="messenger-icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Векторные иконки инженерных систем -->
+        <div class="hero-icons">
+            <a href="./index.html#top" class="hero-icon icon-1" title="На главную: Насос">
+                <svg>
+                    <use href="#icon-bomba"/>
+                </svg>
+            </a>
+            <a href="./index.html#top" class="hero-icon icon-2" title="На главную: Кондиционер">
+                <svg>
+                    <use href="#icon-cond"/>
+                </svg>
+            </a>
+            <a href="./index.html#top" class="hero-icon icon-3" title="На главную: Вентилятор">
+                <svg>
+                    <use href="#icon-fan"/>
+                </svg>
+            </a>
+            <a href="./index.html#top" class="hero-icon icon-4" title="На главную">
+                <svg>
+                    <use href="#icon-pump"/>
+                </svg>
+            </a>
+            <a href="./index.html#top" class="hero-icon icon-5" title="На главную">
+                <svg>
+                    <use href="#icon-valve"/>
+                </svg>
+            </a>
+            <a href="./index.html#top" class="hero-icon icon-6" title="На главную">
+                <svg>
+                    <use href="#icon-sensor"/>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <section class="page-title">
+        <div class="container">
+            <h1>Примеры работ</h1>
+            <p>Наши реальные проекты по вентиляции и кондиционированию</p>
+            <div class="examples-counter">
+                <div class="counter-main">
+                    <span class="counter-number">200+</span>
+                    <span class="counter-text">реализованных проектов</span>
+                </div>
+                <div class="counter-sub">
+                    <span class="counter-sub-text">Более 200 реализованных проектов, 30 из них представлено на сайте</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section class="examples-section">
+        <div class="container">
+            <div class="examples-grid" id="examplesGrid">
+                <!-- Карточки будут добавлены через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Back Button -->
+    <div class="back-button">
+        <div class="container">
+            <a href="./index.html">← Вернуться на главную</a>
+        </div>
+    </div>
+
+    <!-- Кнопка "Быстрая заявка" -->
+    <button class="quick-request" onclick="openQuickRequest()" title="Быстрая заявка">
+        <svg viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H4v-4h11v4zm0-5H4V9h11v4zm5 5h-4V9h4v9z"/>
+        </svg>
+        <span class="quick-request-text">Заявка</span>
+    </button>
+
+    <!-- Кнопка "Вверх" -->
+    <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()" title="Наверх">
+        <svg viewBox="0 0 24 24">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    </button>
+
+    <!-- Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" class="modal-image" src="" alt="">
+            <h2 id="modalTitle" class="modal-title"></h2>
+            <p id="modalDescription" class="modal-description"></p>
+            <p id="modalCopyright" class="modal-copyright"></p>
+            <div class="modal-nav">
+                <button id="prevBtn" onclick="changeModalImage(-1)">← Предыдущее</button>
+                <span id="imageCounter"></span>
+                <button id="nextBtn" onclick="changeModalImage(1)">Следующее →</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Данные примеров работ
+        const examplesData = [
+            {
+                id: 1,
+                title: "Сервисный центр Mercedez-Benz",
+                image: "./img/examples/mercedez-benz.png",
+                description: "Монтаж системы кондиционирования в сервисном центре по ремонту грузовых автомобилей \"Mercedez-Benz\".",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 2,
+                title: "Кинотеатр Курортный",
+                image: "./img/examples/cinema-kurortny.jpg",
+                description: "Монтаж и сервисное обслуживание системы вентиляции с рекуперацией тепла, систем кондиционирования большого и малого залов кинотеатра.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 3,
+                title: "Санаторий Белые Ночи",
+                image: "./img/examples/sanatorium-white-nights.png",
+                description: "Монтаж и обслуживание систем вентиляции бассейна, главного корпуса, системы кондиционирования санатория. Проектирование и монтаж системы дымоудаления и подпора воздуха в лифтовые тамбуры.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 4,
+                title: "Завод НВХ РУС",
+                image: "./img/examples/nhv-rus.png",
+                description: "Разработка проекта и автоматизация системы вентиляции по техническому заданию Заказчика.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 5,
+                title: "Котельная жилого дома 1000м²",
+                image: "./img/examples/boiler-1000m2.png",
+                description: "Монтаж и обслуживание систем отопления и вентиляции жилого комплекса.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 6,
+                title: "Фитнес клуб Фреш фитнес",
+                image: "./img/examples/fresh-fitness.jpg",
+                description: "Комплекс работ по проектированию, строительству и реконструкции инженерных систем здания.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 7,
+                title: "Ресторан WILLIAM BASS PUB",
+                image: "./img/examples/WILLIAM-BASS PUB.jpg",
+                description: "Монтаж и обслуживание системы приточно-вытяжной вентиляции с центральным охлаждением 54 кВт на базе оборудования Wesper. Монтаж системы локальной вытяжной вентиляции зоны горячего цеха.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 8,
+                title: "Санаторий Дюны",
+                image: "./img/examples/sanatoriy-dyuny.jpg",
+                description: "Разработка проектной документации вентиляции бассейна. Монтаж системы приточно-вытяжной вентиляции в помещении водолечебницы. Обслуживание систем вентиляции санатория. Монтаж и обслуживание системы кондиционирования.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 9,
+                title: "Елизаветинская больница",
+                image: "./img/examples/elizavetinskaya-bolnitsa.jpg",
+                description: "Монтаж системы кондиционирования и вентиляции на этапе реконструкции больницы.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 10,
+                title: "Районный подростковый клуб Пушкинец",
+                image: "./img/examples/pushkinec.png",
+                description: "Монтаж системы вентиляции и кондиционирования в клубах РПЦ Пушкинец, Юнность (Systemair Topvex FR04), в помещениях спортивного и тренажерного залов.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 11,
+                title: "Ресторан турецкой кухни AFIYET",
+                image: "./img/examples/AFIYET.png",
+                description: "Монтаж в стесненных условиях приточно вытяжной установки с рекуперацией тепла Systemair.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 12,
+                title: "Дом детского творчества СОЮЗ",
+                image: "./img/examples/souz.png",
+                description: "Монтаж системы вентиляции Aereco. Монтаж и обслуживание системы кондиционирования в учреждении.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 13,
+                title: "Техническая зона санатория Белые Ночи",
+                image: "./img/examples/sanatorium-white-nights2.png",
+                description: "Разработка проектов и монтаж системы вентиляции прачечной, системы теплового обогрева ремонтной зоны и гаража.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 14,
+                title: "Котельная дома 600м²",
+                image: "./img/examples/boiler-600m2.png",
+                description: "Котельная дома на конденсатных котлах Vaillant.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 15,
+                title: "Жилой дом",
+                image: "./img/examples/living_house.png",
+                description: "Система кондиционирования воздуха. Система приточной вентиляции с подогревом. Коллектора отопления, теплых полов и системы водоснабжения.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 16,
+                title: "Приточная вентиляция",
+                image: "./img/examples/prito4naya_vent.png",
+                description: "Приточная вентиляция в систему совмещенная с внутрипольными конвекторами отопления.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 17,
+                title: "Газовая котельная банного комплекса",
+                image: "./img/examples/boiler-600m2.png",
+                description: "Газовая котельная банного комплекса на конденсатных котлах Vaillant.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 18,
+                title: "Система автоматизации хамам",
+                image: "./img/examples/auto_hamam.png",
+                description: "Система автоматизации подогрева хамам с удаленной диспетчеризацией Danfoss.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 19,
+                title: "Тепловой насос Воздух-Вода",
+                image: "./img/examples/teplovoy_nasos_1.png",
+                description: "Тепловой насос Воздух-Вода.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 20,
+                title: "Тепловой насос Воздух-Вода с радиаторным отоплением",
+                image: "./img/examples/teplovoy_nasos_2.png",
+                description: "Тепловой насос Воздух-Вода на систему радиаторного отопления и система кондиционирования помещений.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 21,
+                title: "Наружный блок холодильной камеры",
+                image: "./img/examples/holodilnaya_kamera.png",
+                description: "Наружный блок холодильной камеры частного жилого дома.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 22,
+                title: "Гидромодуль теплового насоса",
+                image: "./img/examples/teplovoy_nasos_3.png",
+                description: "Гидромодуль теплового насоса Воздух-Вода.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 23,
+                title: "Гидромодуль теплового насоса с выносным пультом",
+                image: "./img/examples/teplovoy_nasos_4.png",
+                description: "Гидромодуль теплового насоса Воздух-Вода с выносным пультом управления.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 24,
+                title: "Система диспетчеризации",
+                image: "./img/examples/dispet4erizasiya.png",
+                description: "Диспетчеризация системы вентиляция, котельной и системы отопления по помещениям с удаленным доступом.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 25,
+                title: "Контроллер системы вентиляции бассейна",
+                image: "./img/examples/sistem_vent.png",
+                description: "Контроллер системы вентиляции бассейна.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 26,
+                title: "Удаленный доступ к инженерным системам",
+                image: "./img/examples/udalenny_dostup.png",
+                description: "Удаленный доступ к инженерным системам. Настройка удалённого доступа и регулирования системы отопления по помещениям.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 27,
+                title: "Общественный бассейн",
+                image: "./img/examples/all_pool.png",
+                description: "Система вентиляции, осушения, подогрева теплого пола и отопления встроенными в пол и плинтусными конвекторами.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 28,
+                title: "Аэротруба",
+                image: "./img/examples/aerotruba.png",
+                description: "Система технологических воздуховодов. Система отопления, вентиляции и кондиционирования.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 29,
+                title: "Система вентиляции бассейна Dospel",
+                image: "./img/examples/vent_pool.png",
+                description: "Система вентиляции бассейна Dospel.",
+                copyright: "© Mundo Climatico S.L."
+            },
+            {
+                id: 30,
+                title: "Монтаж кондиционера",
+                image: "./img/examples/montaz_air.png",
+                description: "Монтаж кондиционера.",
+                copyright: "© Mundo Climatico S.L."
+            }
+        ];
+
+        let currentImageIndex = 0;
+
+        // Создание карточек
+        function createExampleCards() {
+            const grid = document.getElementById('examplesGrid');
+            examplesData.forEach((example, index) => {
+                const card = document.createElement('div');
+                card.className = 'example-card';
+                card.onclick = () => openModal(index);
+                
+                card.innerHTML = `
+                    <img src="${example.image}" alt="${example.title}" loading="lazy">
+                    <div class="example-content">
+                        <h3>${example.title}</h3>
+                        <p>${example.description}</p>
+                        <p class="copyright">${example.copyright}</p>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Открытие модального окна
+        function openModal(index) {
+            currentImageIndex = index;
+            const example = examplesData[index];
+            
+            document.getElementById('modalImage').src = example.image;
+            document.getElementById('modalImage').alt = example.title;
+            document.getElementById('modalTitle').textContent = example.title;
+            document.getElementById('modalDescription').textContent = example.description;
+            document.getElementById('modalCopyright').textContent = example.copyright;
+            document.getElementById('imageCounter').textContent = `${index + 1} / ${examplesData.length}`;
+            
+            updateModalButtons();
+            document.getElementById('imageModal').style.display = 'block';
+        }
+
+        // Смена изображения в модальном окне
+        function changeModalImage(direction) {
+            currentImageIndex += direction;
+            
+            if (currentImageIndex < 0) currentImageIndex = examplesData.length - 1;
+            if (currentImageIndex >= examplesData.length) currentImageIndex = 0;
+            
+            const example = examplesData[currentImageIndex];
+            document.getElementById('modalImage').src = example.image;
+            document.getElementById('modalImage').alt = example.title;
+            document.getElementById('modalTitle').textContent = example.title;
+            document.getElementById('modalDescription').textContent = example.description;
+            document.getElementById('modalCopyright').textContent = example.copyright;
+            document.getElementById('imageCounter').textContent = `${currentImageIndex + 1} / ${examplesData.length}`;
+            
+            updateModalButtons();
+        }
+
+        // Обновление кнопок навигации
+        function updateModalButtons() {
+            document.getElementById('prevBtn').disabled = examplesData.length <= 1;
+            document.getElementById('nextBtn').disabled = examplesData.length <= 1;
+        }
+
+        // Закрытие модального окна
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // Обработчики событий
+        document.addEventListener('DOMContentLoaded', function() {
+            createExampleCards();
+            
+            // Закрытие по клику на крестик
+            document.querySelector('.close').onclick = closeModal;
+            
+            // Закрытие по клику вне модального окна
+            window.onclick = function(event) {
+                const modal = document.getElementById('imageModal');
+                if (event.target === modal) {
+                    closeModal();
+                }
+            }
+            
+            // Закрытие по Escape
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeModal();
+                }
+            });
+
+            // Показать/скрыть кнопку "Вверх" при скролле
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            if (scrollToTopBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        scrollToTopBtn.classList.add('show');
+                    } else {
+                        scrollToTopBtn.classList.remove('show');
+                    }
+                });
+            }
+
+            // Автоматическое форматирование номера телефона в быстрой заявке
+            const quickPhoneInput = document.getElementById('quickPhone');
+            if (quickPhoneInput) {
+                quickPhoneInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    
+                    if (value.length > 0) {
+                        if (value.length <= 1) {
+                            value = '+7 (' + value;
+                        } else if (value.length <= 4) {
+                            value = '+7 (' + value.substring(1, 4);
+                        } else if (value.length <= 7) {
+                            value = '+7 (' + value.substring(1, 4) + ') ' + value.substring(4, 7);
+                        } else if (value.length <= 9) {
+                            value = '+7 (' + value.substring(1, 4) + ') ' + value.substring(4, 7) + '-' + value.substring(7, 9);
+                        } else {
+                            value = '+7 (' + value.substring(1, 4) + ') ' + value.substring(4, 7) + '-' + value.substring(7, 9) + '-' + value.substring(9, 11);
+                        }
+                    }
+                    
+                    e.target.value = value;
+                });
+            }
+
+            // Обработка формы быстрой заявки
+            const quickRequestForm = document.getElementById('quickRequestForm');
+            if (quickRequestForm) {
+                quickRequestForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(this);
+                    const name = formData.get('name');
+                    const phone = formData.get('phone');
+                    const message = formData.get('message');
+                    
+                    // Валидация
+                    if (!name.trim()) {
+                        alert('Пожалуйста, введите ваше имя');
+                        return;
+                    }
+                    
+                    if (!phone.trim()) {
+                        alert('Пожалуйста, введите номер телефона');
+                        return;
+                    }
+                    
+                    // Валидация телефона
+                    const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
+                    if (!phoneRegex.test(phone.trim())) {
+                        alert('Пожалуйста, введите корректный номер телефона');
+                        return;
+                    }
+                    
+                    // Показать состояние загрузки
+                    const submitBtn = this.querySelector('.submit-btn');
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = 'Отправляем...';
+                    submitBtn.disabled = true;
+                    
+                    // Формируем mailto ссылку
+                    const subject = encodeURIComponent('Быстрая заявка с сайта ИК.рф (страница Примеры работ)');
+                    const body = encodeURIComponent(
+                        `Имя: ${name}\n` +
+                        `Телефон: ${phone}\n` +
+                        `Сообщение: ${message || 'Не указано'}\n\n` +
+                        `Отправлено со страницы: ${window.location.href}`
+                    );
+                    
+                    const mailtoLink = `mailto:igor.kuznetsov@gmail.com?subject=${subject}&body=${body}`;
+                    
+                    try {
+                        window.location.href = mailtoLink;
+                        
+                        // Показать уведомление об успехе
+                        setTimeout(() => {
+                            alert('Заявка подготовлена! Проверьте вашу почтовую программу для отправки.');
+                            closeQuickRequestModal();
+                        }, 500);
+                        
+                    } catch (error) {
+                        console.error('Ошибка при отправке:', error);
+                        alert('Произошла ошибка. Пожалуйста, попробуйте еще раз или свяжитесь с нами по телефону.');
+                    } finally {
+                        // Восстановить кнопку
+                        setTimeout(() => {
+                            submitBtn.textContent = originalText;
+                            submitBtn.disabled = false;
+                        }, 1000);
+                    }
+                });
+            }
+        });
+
+        // Функция прокрутки наверх
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Функция открытия модального окна быстрой заявки
+        function openQuickRequest() {
+            const modal = document.getElementById('quickRequestModal');
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                
+                // Фокус на первое поле
+                const firstInput = modal.querySelector('#quickName');
+                if (firstInput) {
+                    setTimeout(() => firstInput.focus(), 100);
+                }
+            }
+        }
+
+        // Функция закрытия модального окна
+        function closeQuickRequestModal() {
+            const modal = document.getElementById('quickRequestModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                
+                // Сброс формы
+                const form = document.getElementById('quickRequestForm');
+                if (form) {
+                    form.reset();
+                }
+            }
+        }
+
+        // Закрытие модального окна при клике вне его
+        window.onclick = function(event) {
+            const imageModal = document.getElementById('imageModal');
+            const quickRequestModal = document.getElementById('quickRequestModal');
+            
+            if (event.target === imageModal) {
+                closeModal();
+            }
+            
+            if (event.target === quickRequestModal) {
+                closeQuickRequestModal();
+            }
+        };
+
+        // Закрытие модального окна по клавише Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+                closeQuickRequestModal();
+            }
+        });
+    </script>
+
+    <!-- Кнопка "Быстрая заявка" -->
+    <button class="quick-request" onclick="openQuickRequest()" title="Быстрая заявка">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+        <span class="quick-request-text">Заявка</span>
+    </button>
+
+    <!-- Кнопка "Вверх" -->
+    <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()" title="Наверх">
+        <svg viewBox="0 0 24 24">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Игорь Кузнецов</h4>
+                    <p>Профессиональные решения в области автоматизации, монтажа и обслуживания инженерных систем</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Услуги</h4>
+                    <ul class="footer-links">
+                        <li><a href="./index.html#services">Проектирование</a></li>
+                        <li><a href="./index.html#services">Кондиционирование</a></li>
+                        <li><a href="./index.html#services">Отопление</a></li>
+                        <li><a href="./index.html#services">Вентиляция</a></li>
+                        <li><a href="./index.html#services">Встроенные пылесосы</a></li>
+                        <li><a href="./index.html#services">Автоматизация</a></li>
+                        <li><a href="./index.html#services">Вентиляция Aereco</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <ul class="footer-links">
+                        <li><a href="./index.html">Главная</a></li>
+                        <li><a href="./about.html">О себе</a></li>
+                        <li><a href="./examples.html">Примеры работ</a></li>
+                        <li><a href="./cooperation.html">Сотрудничество</a></li>
+                        <li><a href="./index.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section footer-contacts">
+                    <h4>Контакты</h4>
+                    <div class="footer-contact">
+                        <p>📞 <a href="tel:+79216433297" class="footer-phone">+7 921 643-32-97</a></p>
+                        <p>📧 igor.kuznetsov@gmail.com</p>
+                        <p>📍 188660, Ленинградская обл., дер. Порошкино, ул.Березовая, уч.8</p>
+                        <div class="footer-social">
+                            <a href="https://wa.me/79216433297" target="_blank" rel="noopener noreferrer" class="social-link" title="WhatsApp">
+                                <img src="./img/whatsapp.svg" alt="WhatsApp" class="social-icon">
+                            </a>
+                            <a href="https://t.me/igor_kuznetsov_hvac" target="_blank" rel="noopener noreferrer" class="social-link" title="Telegram">
+                                <img src="./img/telegram-svgrepo-com.svg" alt="Telegram" class="social-icon">
+                            </a>
+                        </div>
+                        <div class="footer-maps">
+                            <a href="https://yandex.ru/maps/?pt=30.1234,60.5678&z=16&l=map" target="_blank" rel="noopener noreferrer" class="map-link">
+                                <img src="./img/Yandex_Maps_icon.svg.png" alt="Яндекс Карты" class="map-icon">
+                                Яндекс Карты
+                            </a>
+                            <a href="https://2gis.ru/spb/search/Порошкино%20Березовая%208" target="_blank" rel="noopener noreferrer" class="map-link">
+                                <img src="./img/2GIS_logo.svg.png" alt="2ГИС" class="map-icon">
+                                2ГИС
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>О компании</h4>
+                    <p>Более 15 лет опыта в инженерных системах.</p>
+                    <p><a href="https://mundoclimatico.es" target="_blank" rel="noopener noreferrer">Mundo Climatico S.L.</a></p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>Copyright © 2009 - 2025</p>
+                    <p>Перепечатка, а равно использование материалов с данного сайта, разрешена только с письменного согласия владельца.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для быстрой заявки -->
+    <div id="quickRequestModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Быстрая заявка</h3>
+                <span class="modal-close" onclick="closeQuickRequestModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="quickRequestForm">
+                    <div class="form-group">
+                        <label for="quickName">Имя *</label>
+                        <input type="text" id="quickName" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quickPhone">Телефон *</label>
+                        <input type="tel" id="quickPhone" name="phone" placeholder="+7 (___) ___-__-__" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quickMessage">Сообщение</label>
+                        <textarea id="quickMessage" name="message" rows="4" placeholder="Опишите вашу задачу или вопрос"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">Отправить заявку</button>
+                        <button type="button" class="cancel-btn" onclick="closeQuickRequestModal()">Отмена</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+// Активная ссылка в хедере по текущей странице (без подсветки Контактов)
+document.addEventListener('DOMContentLoaded', function() {
+    const links = document.querySelectorAll('.nav-menu a');
+    const current = (location.pathname.split('/').pop() || 'index.html');
+    links.forEach(a => {
+        const text = (a.textContent || '').trim().toLowerCase();
+        if (text === 'контакты') return;
+        const href = a.getAttribute('href') || '';
+        let file = '';
+        if (href.startsWith('#')) {
+            file = current;
+        } else {
+            file = href.split('#')[0].replace(/^\.\//, '');
+            if (file === '') file = current;
+        }
+        if (file === current) a.classList.add('active'); else a.classList.remove('active');
+    });
+});
+</script>
+</html> 

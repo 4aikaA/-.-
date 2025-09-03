@@ -1,0 +1,2412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сотрудничество - Игорь Кузнецов</title>
+    <meta name="description" content="Готовы к сотрудничеству с проектировщиками, инженерами, монтажниками, наладчиками, архитекторами и дизайнерами любого уровня">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: #ffffff;
+            color: #1a1a2e;
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1a1a2e;
+            text-decoration: none;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logo .surname {
+            color: #ff6b35;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-menu a {
+            color: #0d7377;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        
+        .nav-menu a:hover {
+            background: #0d7377;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(13, 115, 119, 0.3);
+        }
+
+        /* Header Train */
+        .header-train {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 20px;
+        }
+
+        .train-item {
+            position: relative;
+        }
+
+        .train-icon {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2478%) hue-rotate(330deg) brightness(118%) contrast(119%);
+            transition: all 0.3s ease;
+        }
+
+        .train-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+            filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2478%) hue-rotate(330deg) brightness(118%) contrast(119%);
+        }
+
+        .train-connector {
+            width: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6b35, #ff8c42);
+            border-radius: 1px;
+            position: relative;
+        }
+
+        .train-connector::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #ff6b35, #ff8c42);
+            border-radius: 1px;
+            opacity: 0.3;
+        }
+
+        @keyframes trainMove {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        /* Анимация паровозика */
+        @keyframes trainMove {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(2px); }
+            100% { transform: translateX(0); }
+        }
+
+        .header-train:hover {
+            animation: trainMove 0.6s ease-in-out;
+        }
+
+        .train-item:hover .train-icon {
+            animation: trainMove 0.4s ease-in-out;
+        }
+
+        /* Header Messengers */
+        .header-messengers {
+            display: flex;
+            gap: 15px;
+            margin-left: 20px;
+        }
+
+        .header-messengers .messenger-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-messengers .messenger-link:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: #0d7377;
+            animation: messengerPulse 0.6s ease-in-out;
+        }
+
+        .header-messengers .whatsapp-link:hover {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            border-color: #25d366;
+        }
+
+        .header-messengers .telegram-link:hover {
+            background: linear-gradient(135deg, #0088cc, #005580);
+            border-color: #0088cc;
+        }
+
+        .header-messengers .messenger-icon {
+            width: 20px;
+            height: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .header-messengers .messenger-link:hover .messenger-icon {
+            filter: brightness(0) invert(1);
+            transform: scale(1.1);
+        }
+
+        @keyframes messengerPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Floating Icons */
+        .hero-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .hero-icons a { pointer-events: auto; }
+
+        .hero-icon {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-icon svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .icon-1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .icon-2 { top: 60%; left: 15%; animation-delay: 1s; }
+        .icon-3 { top: 30%; right: 20%; animation-delay: 2s; }
+        .icon-4 { top: 70%; right: 10%; animation-delay: 3s; }
+        .icon-5 { top: 15%; left: 60%; animation-delay: 4s; }
+        .icon-6 { top: 80%; left: 70%; animation-delay: 5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(10px) rotate(240deg); }
+        }
+
+        /* Page Title */
+        .page-title { background: #1a1a2e; color: #ffffff; text-align: center; padding: 120px 20px 80px; margin-top: 80px; }
+        .page-title h1 { font-size: 3rem; margin-bottom: 20px; font-weight: 800; color: #ffffff; text-transform: none; letter-spacing: 0; }
+        .page-title p { font-size: 1.2rem; opacity: 0.9; color: #ffffff; }
+        @media (max-width: 768px) { .page-title h1 { font-size: 2.2rem; } }
+        @media (max-width: 480px) { .page-title h1 { font-size: 1.8rem; } }
+
+        /* Main Content */
+        .main-content {
+            padding: 80px 0;
+        }
+
+        .cooperation-intro {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .cooperation-intro h2 {
+            font-size: 2.5rem;
+            color: #0d7377;
+            margin-bottom: 30px;
+        }
+
+        .cooperation-intro p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            line-height: 1.8;
+        }
+
+        .cooperation-intro .highlight {
+            color: #ff6b35;
+            font-weight: 600;
+        }
+
+        /* Specializations Grid */
+        .specializations-section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title .highlight {
+            color: #ff6b35;
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(255, 107, 53, 0.2);
+        }
+
+        .specializations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .spec-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid #f0f0f0;
+        }
+
+        .spec-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(13, 115, 119, 0.15);
+            border-color: #0d7377;
+        }
+
+        .spec-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .spec-card h3 {
+            font-size: 1.5rem;
+            color: #0d7377;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .spec-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .spec-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .spec-list li {
+            color: #555;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .spec-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ff6b35;
+            font-weight: bold;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 80px 0;
+            margin-bottom: 80px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .benefit-card {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            color: #0d7377;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .benefit-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact { padding: 60px 0; background: #ffffff; min-height: auto; display: flex; flex-direction: column; justify-content: flex-start; }
+        .contact .contact-grid { display: flex; flex-direction: column; gap: 0; margin-top: 30px; }
+        .contact .contact-info { max-width: 800px; margin: 0 auto; }
+        .contact .contact-item { display: flex; align-items: flex-start; margin-bottom: 25px; padding: 25px; background: #f8f9fa; border-radius: 15px; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); }
+        .contact .contact-item:hover { background: #e9ecef; transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); }
+        .contact .contact-icon { width: 50px; height: 50px; background: linear-gradient(135deg, #0d7377, #1a1a2e); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px; color: white; font-size: 1.2rem; flex-shrink: 0; }
+        .contact .contact-text h4 { font-size: 1.1rem; margin-bottom: 8px; color: #333; font-weight: 600; }
+        .contact .contact-text p { color: #666; margin: 0; }
+        .contact .contact-phone-messengers, .contact .contact-address-maps { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
+        .contact .contact-phone, .contact .contact-messengers-section, .contact .contact-address, .contact .contact-maps-section { display: flex; align-items: flex-start; gap: 15px; }
+        @media (max-width: 768px) { .contact .contact-phone-messengers, .contact .contact-address-maps { grid-template-columns: 1fr; gap: 20px; } }
+        @media (max-width: 480px) { .contact .contact-item { flex-direction: column; text-align: center; } .contact .contact-icon { margin: 0 0 10px 0; } }
+
+        .contact-link {
+            color: #0d7377;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #ff6b35;
+        }
+
+        .contact-messengers {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .messenger-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #0d7377;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: rgba(13, 115, 119, 0.1);
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .messenger-link:hover {
+            background: #0d7377;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .messenger-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Contact form styles */
+        .contact-form-section .contact-text {
+            width: 100%;
+        }
+
+        .inline-form {
+            margin-top: 20px;
+        }
+
+        .inline-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .inline-form .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .inline-form .form-group input,
+        .inline-form .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #ffffff;
+        }
+
+        .inline-form .form-group input:focus,
+        .inline-form .form-group textarea:focus {
+            outline: none;
+            border-color: #0d7377;
+            box-shadow: 0 0 0 3px rgba(13, 115, 119, 0.1);
+        }
+
+        .inline-form .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .inline-form .submit-btn {
+            background: linear-gradient(135deg, #0d7377, #13a6b2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .inline-form .submit-btn:hover {
+            background: linear-gradient(135deg, #13a6b2, #0d7377);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(13, 115, 119, 0.3);
+        }
+
+        /* Quick Request Button */
+        .quick-request {
+            position: fixed;
+            bottom: 30px;
+            right: 100px;
+            width: 80px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .quick-request:hover {
+            background: linear-gradient(135deg, #ff8c42, #ff6b35);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+        }
+
+        .quick-request svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .quick-request-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        /* Scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0d7377, #1a1a2e);
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 25px rgba(13, 115, 119, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .scroll-to-top:hover {
+            background: linear-gradient(135deg, #ff6b35, #0d7377);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+        }
+
+        .scroll-to-top.show {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1a1a2e, #0d7377);
+            color: #ffffff;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            color: #ff6b35;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .footer-section p {
+            color: #e0e0e0;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ff6b35;
+        }
+
+        .footer-link {
+            color: #ff6b35;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: #ff8c42;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .footer-copyright p {
+            color: #b0b0b0;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .footer-copyright p:first-child {
+            color: #ff6b35;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease-out;
+            overflow: hidden;
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-50px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #0d7377, #1a1a2e);
+            color: #ffffff;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-body .form-group {
+            margin-bottom: 25px;
+        }
+
+        .modal-body .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .modal-body .form-group input,
+        .modal-body .form-group textarea {
+            width: 100%;
+            padding: 15px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .modal-body .form-group input:focus,
+        .modal-body .form-group textarea:focus {
+            outline: none;
+            border-color: #0d7377;
+            box-shadow: 0 0 0 3px rgba(13, 115, 119, 0.1);
+            background: #ffffff;
+        }
+
+        .modal-body .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .form-actions .submit-btn {
+            flex: 2;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #0d7377, #13a6b2);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-actions .submit-btn:hover {
+            background: linear-gradient(135deg, #13a6b2, #0d7377);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(13, 115, 119, 0.3);
+        }
+
+        .form-actions .cancel-btn {
+            flex: 1;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            color: #6c757d;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-actions .cancel-btn:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+            color: #495057;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            /* Адаптация логотипа для планшетов */
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .header-train {
+                order: 2;
+            }
+
+            .nav-menu {
+                order: 1;
+                flex-wrap: wrap;
+                gap: 15px;
+                justify-content: center;
+            }
+
+            .header-messengers {
+                order: 3;
+                margin-left: 0;
+                gap: 12px;
+            }
+
+            .header-messengers .messenger-link {
+                width: 36px;
+                height: 36px;
+            }
+
+            .header-messengers .messenger-icon {
+                width: 18px;
+                height: 18px;
+            }
+            
+            /* Адаптация навигации для планшетов */
+            .nav-menu {
+                gap: 15px;
+            }
+            
+            .nav-menu a {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+
+            .page-title h1 {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+
+            .page-title p {
+                font-size: 1.1rem;
+            }
+
+            .cooperation-intro h2 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.8rem;
+            }
+
+            .specializations-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .spec-card {
+                padding: 30px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .quick-request {
+                bottom: 25px;
+                right: 90px;
+                width: 70px;
+                height: 55px;
+            }
+
+            .quick-request svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .quick-request-text {
+                font-size: 0.75rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+
+            .modal-header {
+                padding: 20px 25px;
+            }
+
+            .modal-header h3 {
+                font-size: 1.3rem;
+            }
+
+            .modal-body {
+                padding: 25px;
+            }
+
+            .form-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .form-actions .submit-btn,
+            .form-actions .cancel-btn {
+                flex: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Адаптация логотипа для мобильных */
+            .logo {
+                font-size: 1.1rem;
+            }
+            
+            .page-title {
+                padding: 60px 0 40px;
+            }
+
+            .page-title h1 {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+
+            .main-content {
+                padding: 60px 0;
+            }
+
+            .cooperation-intro {
+                margin-bottom: 60px;
+            }
+
+            .cooperation-intro h2 {
+                font-size: 1.8rem;
+            }
+
+            .specializations-section {
+                margin-bottom: 60px;
+            }
+
+            .benefits-section {
+                padding: 60px 0;
+            }
+
+            .contact-section {
+                padding: 60px 0;
+            }
+
+            .spec-card {
+                padding: 25px;
+            }
+
+            .benefit-card {
+                padding: 25px;
+            }
+
+            .nav-menu {
+                gap: 10px;
+            }
+
+            .nav-menu a {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+
+            .header-train {
+                gap: 4px;
+                margin: 0 10px;
+            }
+
+            .train-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .train-connector {
+                width: 12px;
+                height: 1px;
+            }
+
+            .header-messengers {
+                gap: 8px;
+                margin-left: 8px;
+            }
+
+            .header-messengers .messenger-link {
+                width: 28px;
+                height: 28px;
+            }
+
+            .header-messengers .messenger-icon {
+                width: 14px;
+                height: 14px;
+            }
+
+            .quick-request {
+                bottom: 20px;
+                right: 80px;
+                width: 65px;
+                height: 50px;
+            }
+
+            .quick-request svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .quick-request-text {
+                font-size: 0.7rem;
+            }
+
+            .modal-content {
+                width: 98%;
+                margin: 5% auto;
+            }
+
+            .modal-header {
+                padding: 18px 20px;
+            }
+
+            .modal-header h3 {
+                font-size: 1.2rem;
+            }
+
+            .modal-body {
+                padding: 20px;
+            }
+
+            .modal-body .form-group input,
+            .modal-body .form-group textarea {
+                padding: 12px 15px;
+                font-size: 16px;
+            }
+        }
+        
+        /* Стили для размещения телефона и мессенджеров рядом */
+        .contact-phone-messengers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .contact-phone,
+        .contact-messengers-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .contact-phone .contact-text,
+        .contact-messengers-section .contact-text {
+            flex: 1;
+        }
+
+        /* Стили для размещения адреса и карт рядом */
+        .contact-address-maps {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .contact-address,
+        .contact-maps-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .contact-address .contact-text,
+        .contact-maps-section .contact-text {
+            flex: 1;
+        }
+
+        /* Стили для карт */
+        .contact-maps { display: flex; flex-wrap: nowrap; gap: 10px; }
+        .contact-maps .map-link { white-space: nowrap; display: inline-flex; align-items: center; }
+
+        .contact-maps .map-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #0d7377, #13a6b2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(13, 115, 119, 0.2);
+        }
+
+        .contact-maps .map-link:hover {
+            background: linear-gradient(135deg, #13a6b2, #0d7377);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(13, 115, 119, 0.4);
+            animation: pulse 1.5s infinite;
+        }
+
+        .contact-maps .map-link:active {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(13, 115, 119, 0.3);
+        }
+
+        .map-icon {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .map-icon[alt="2ГИС"] {
+            width: 28px;
+            height: 28px;
+        }
+
+        .map-link img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translateY(-3px) scale(1); }
+            50% { transform: translateY(-3px) scale(1.05); }
+        }
+
+        /* Адаптивные стили для контактов */
+        @media (max-width: 768px) {
+            .contact-phone-messengers,
+            .contact-address-maps {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .contact-maps .map-link {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+            
+            .map-icon {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .map-icon[alt="2ГИС"] {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-phone-messengers,
+            .contact-address-maps {
+                gap: 15px;
+            }
+            
+            .contact-maps {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .contact-maps .map-link {
+                justify-content: center;
+                padding: 12px;
+                font-size: 0.85rem;
+                text-align: center;
+            }
+            
+            .map-icon {
+                width: 18px;
+                height: 18px;
+            }
+            
+            .map-icon[alt="2ГИС"] {
+                width: 22px;
+                height: 22px;
+            }
+        }
+        
+        /* Номер телефона и иконки мессенджеров в хедере */
+        .header-messengers {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: 20px;
+        }
+
+        .header-phone {
+            color: #0d7377;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 8px 12px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            background: rgba(13, 115, 119, 0.1);
+            border: 1px solid transparent;
+        }
+
+        .header-phone:hover {
+            background: #0d7377;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(13, 115, 119, 0.3);
+            border-color: #0d7377;
+        }
+
+        .header-phone:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(13, 115, 119, 0.2);
+        }
+
+        .header-messengers .messenger-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(13, 115, 119, 0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid transparent;
+        }
+
+        .header-messengers .messenger-link:hover {
+            background: rgba(13, 115, 119, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(13, 115, 119, 0.3);
+        }
+
+        .header-messengers .whatsapp-link:hover {
+            background: #25d366;
+            border-color: #25d366;
+        }
+
+        .header-messengers .telegram-link:hover {
+            background: #0088cc;
+            border-color: #0088cc;
+        }
+
+        .header-messengers .messenger-icon {
+            width: 20px;
+            height: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .header-messengers .messenger-link:hover .messenger-icon {
+            filter: brightness(0) invert(1);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, #1a1a2e, #0d7377);
+            color: #ffffff;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            color: #ff6b35;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .footer-section p {
+            color: #e0e0e0;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ff6b35;
+        }
+
+        .footer-section a[href*="mundoclimatico.es"] {
+            display: inline-block;
+            color: #47C5AD;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 6px 12px;
+            background: rgba(71, 197, 173, 0.1);
+            border: 1px solid #47C5AD;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-section a[href*="mundoclimatico.es"]:hover {
+            background: #47C5AD;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(71, 197, 173, 0.3);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .footer-copyright p {
+            color: #b0b0b0;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .footer-copyright p:first-child {
+            color: #ff6b35;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Стили для номера телефона в футере */
+        .footer-phone {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .footer-phone:hover {
+            color: #0d7377;
+            text-decoration: underline;
+        }
+
+        /* Выравнивание колонки Контакты по центру */
+        .footer-contacts {
+            text-align: center;
+        }
+
+        .footer-contacts .footer-contact {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-contacts .footer-contact p {
+            text-align: center;
+        }
+
+        /* Стили для социальных ссылок в футере */
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Стили для карт в футере */
+        .footer-maps {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #47C5AD, #3ba892);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(71, 197, 173, 0.3);
+            border: 2px solid #47C5AD;
+        }
+
+        .map-link:hover {
+            background: linear-gradient(135deg, #3ba892, #47C5AD);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(71, 197, 173, 0.4);
+            border-color: #3ba892;
+        }
+
+        .map-icon {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .map-icon[alt="2ГИС"] {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* --- Overrides to match index.html Contact design --- */
+        .contact-messengers {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .contact-messengers .messenger-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: linear-gradient(135deg, #47C5AD, #3ba892);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(71, 197, 173, 0.3);
+            border: 2px solid #47C5AD;
+        }
+        .contact-messengers .messenger-link:hover {
+            background: linear-gradient(135deg, #3ba892, #47C5AD);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(71, 197, 173, 0.4);
+            border-color: #3ba892;
+        }
+        .contact-messengers .messenger-icon { width: 20px; height: 20px; }
+        .contact-maps { display: flex; gap: 10px; margin-top: 10px; }
+        .contact-maps .map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(255, 107, 53, 0.3);
+            border: 2px solid #ff6b35;
+        }
+        .contact-maps .map-link:hover {
+            background: linear-gradient(135deg, #ff8c42, #ff6b35);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+            border-color: #ff8c42;
+        }
+        .map-icon { width: 24px; height: 24px; object-fit: contain; flex-shrink: 0; }
+        .map-icon[alt="2ГИС"] { width: 28px; height: 28px; }
+        @media (max-width: 768px) {
+            .contact-maps .map-link { padding: 6px 14px; font-size: 0.85rem; }
+            .map-icon { width: 22px; height: 22px; }
+            .map-icon[alt="2ГИС"] { width: 26px; height: 26px; }
+        }
+        @media (max-width: 480px) {
+            .contact-messengers { flex-direction: column; gap: 10px; align-items: center; }
+            .contact-messengers .messenger-link { width: 100%; max-width: 200px; justify-content: center; }
+            .contact-maps { flex-direction: column; gap: 8px; align-items: center; }
+            .contact-maps .map-link { width: 100%; max-width: 200px; justify-content: center; }
+            .map-icon { width: 20px; height: 20px; }
+            .map-icon[alt="2ГИС"] { width: 24px; height: 24px; }
+        }
+
+        /* Ensure headings use site-wide font */
+        .page-title h1, .section-title h2 { font-family: inherit; }
+
+        /* Active nav item */
+        .nav-menu a.active { background: rgba(13,115,119,0.12); color: #0d7377; box-shadow: none; border: 1px solid rgba(13,115,119,0.25); }
+    </style>
+    
+    <!-- SVG иконки для инженерных систем -->
+    <svg style="display: none;">
+        <!-- Насос/компрессор -->
+        <symbol id="icon-bomba" viewBox="0 0 24 24">
+            <rect x="4" y="8" width="16" height="8" rx="2" fill="currentColor"/>
+            <circle cx="12" cy="12" r="2" fill="white"/>
+            <rect x="10" y="6" width="4" height="2" fill="currentColor"/>
+            <rect x="10" y="16" width="4" height="2" fill="currentColor"/>
+        </symbol>
+        <!-- Кондиционер -->
+        <symbol id="icon-cond" viewBox="0 0 24 24">
+            <rect x="2" y="6" width="20" height="12" rx="2" fill="currentColor"/>
+            <rect x="4" y="8" width="16" height="8" fill="white"/>
+            <circle cx="8" cy="12" r="1" fill="currentColor"/>
+            <circle cx="16" cy="12" r="1" fill="currentColor"/>
+        </symbol>
+        <!-- Вентилятор -->
+        <symbol id="icon-fan" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="8" fill="currentColor"/>
+            <circle cx="12" cy="12" r="4" fill="white"/>
+            <rect x="11" y="2" width="2" height="6" fill="white"/>
+            <rect x="11" y="16" width="2" height="6" fill="white"/>
+            <rect x="2" y="11" width="6" height="2" fill="white"/>
+            <rect x="16" y="11" width="6" height="2" fill="white"/>
+        </symbol>
+        <!-- Насос -->
+        <symbol id="icon-pump" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="6" fill="currentColor"/>
+            <circle cx="12" cy="12" r="3" fill="white"/>
+            <rect x="9" y="6" width="6" height="2" fill="currentColor"/>
+            <rect x="9" y="16" width="6" height="2" fill="currentColor"/>
+        </symbol>
+        <!-- Клапан -->
+        <symbol id="icon-valve" viewBox="0 0 24 24">
+            <rect x="8" y="4" width="8" height="16" rx="1" fill="currentColor"/>
+            <rect x="6" y="8" width="12" height="8" fill="white"/>
+            <rect x="8" y="10" width="8" height="4" fill="currentColor"/>
+        </symbol>
+        <!-- Датчик -->
+        <symbol id="icon-sensor" viewBox="0 0 24 24">
+            <rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/>
+            <circle cx="12" cy="12" r="3" fill="white"/>
+            <rect x="11" y="4" width="2" height="3" fill="currentColor"/>
+            <rect x="11" y="17" width="2" height="3" fill="currentColor"/>
+        </symbol>
+    </svg>
+</head>
+<body id="top">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="./index.html" class="logo">Игорь <span class="surname">Кузнецов</span></a>
+                
+                <!-- Паровозик из картинок -->
+                <a href="./index.html#top" class="header-train" title="На главную">
+                    <div class="train-item">
+                        <img src="./img/bomba.png" alt="Насос" class="train-icon">
+                    </div>
+                    <div class="train-connector"></div>
+                    <div class="train-item">
+                        <img src="./img/cond.png" alt="Кондиционер" class="train-icon">
+                    </div>
+                    <div class="train-connector"></div>
+                    <div class="train-item">
+                        <img src="./img/fan.png" alt="Вентилятор" class="train-icon">
+                    </div>
+                </a>
+                
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="./index.html#services">Услуги</a></li>
+                        <li><a href="./about.html">О себе</a></li>
+                        <li><a href="./examples.html">Примеры работ</a></li>
+                        <li><a href="./cooperation.html">Сотрудничество</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Иконки мессенджеров в хедере -->
+                <div class="header-messengers">
+                    <a href="https://wa.me/79216433297" target="_blank" rel="noopener noreferrer" class="messenger-link whatsapp-link" title="WhatsApp">
+                        <img src="./img/whatsapp.svg" alt="WhatsApp" class="messenger-icon">
+                    </a>
+                    <a href="https://t.me/igor_kuznetsov_hvac" target="_blank" rel="noopener noreferrer" class="messenger-link telegram-link" title="Telegram">
+                        <img src="./img/telegram-svgrepo-com.svg" alt="Telegram" class="messenger-icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Векторные иконки инженерных систем -->
+        <div class="hero-icons">
+            <a href="./index.html#top" class="hero-icon icon-1" title="На главную: Насос">
+                <svg>
+                    <use href="#icon-bomba"/>
+                </svg>
+            </a>
+            <a href="./index.html#top" class="hero-icon icon-2" title="На главную: Кондиционер">
+                <svg>
+                    <use href="#icon-cond"/>
+                </svg>
+            </a>
+            <a href="./index.html#top" class="hero-icon icon-3" title="На главную: Вентилятор">
+                <svg>
+                    <use href="#icon-fan"/>
+                </svg>
+            </a>
+            <a href="./index.html#top" class="hero-icon icon-4" title="На главную">
+                <svg>
+                    <use href="#icon-pump"/>
+                </svg>
+            </a>
+            <a href="./index.html#top" class="hero-icon icon-5" title="На главную">
+                <svg>
+                    <use href="#icon-valve"/>
+                </svg>
+            </a>
+            <a href="./index.html#top" class="hero-icon icon-6" title="На главную">
+                <svg>
+                    <use href="#icon-sensor"/>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <section class="page-title">
+        <div class="container">
+            <h1>Открыты к сотрудничеству</h1>
+            <p>Открыты к совместной работе с проектировщиками, инженерами, монтажниками, наладчиками, архитекторами и дизайнерами.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+
+            <!-- Specializations Section -->
+            <section class="specializations-section">
+                <div class="section-title">
+                    <h2>Наши <span class="highlight">специализации</span></h2>
+                </div>
+
+                <div class="specializations-grid">
+                    <!-- Проектирование и расчеты -->
+                    <div class="spec-card">
+                        <span class="spec-icon">🏗️</span>
+                        <h3>Проектирование и расчеты</h3>
+                        <p>Полный цикл проектных работ для инженерных систем любой сложности</p>
+                        <ul class="spec-list">
+                            <li>Проектирование систем ОВиК</li>
+                            <li>Теплотехнические расчеты</li>
+                            <li>Аэродинамические расчеты</li>
+                            <li>3D-моделирование в CAD</li>
+                            <li>Энергоаудит зданий</li>
+                            <li>Подбор оборудования</li>
+                        </ul>
+                    </div>
+
+                    <!-- Монтаж и пусконаладка -->
+                    <div class="spec-card">
+                        <span class="spec-icon">⚙️</span>
+                        <h3>Монтаж и пусконаладка</h3>
+                        <p>Профессиональный монтаж и настройка инженерных систем</p>
+                        <ul class="spec-list">
+                            <li>Монтаж систем вентиляции</li>
+                            <li>Установка кондиционеров</li>
+                            <li>Монтаж отопительных систем</li>
+                            <li>Прокладка коммуникаций</li>
+                            <li>Пусконаладочные работы</li>
+                            <li>Балансировка систем</li>
+                        </ul>
+                    </div>
+
+                    <!-- Автоматизация и диспетчеризация -->
+                    <div class="spec-card">
+                        <span class="spec-icon">🔧</span>
+                        <h3>Автоматизация и диспетчеризация</h3>
+                        <p>Современные решения для управления инженерными системами</p>
+                        <ul class="spec-list">
+                            <li>Проектирование систем автоматики</li>
+                            <li>Программирование контроллеров</li>
+                            <li>Монтаж систем управления</li>
+                            <li>Диспетчеризация объектов</li>
+                            <li>Удаленный мониторинг</li>
+                            <li>Интеграция со смарт-системами</li>
+                        </ul>
+                    </div>
+
+                    <!-- Техническое обслуживание -->
+                    <div class="spec-card">
+                        <span class="spec-icon">🔍</span>
+                        <h3>Техническое обслуживание</h3>
+                        <p>Комплексное сервисное обслуживание инженерных систем</p>
+                        <ul class="spec-list">
+                            <li>Регулярное ТО систем ОВиК</li>
+                            <li>Диагностика оборудования</li>
+                            <li>Ремонт и замена узлов</li>
+                            <li>Промывка систем</li>
+                            <li>Замена фильтров</li>
+                            <li>Аварийный выезд 24/7</li>
+                        </ul>
+                    </div>
+
+                    <!-- Консультации и экспертиза -->
+                    <div class="spec-card">
+                        <span class="spec-icon">📋</span>
+                        <h3>Консультации и экспертиза</h3>
+                        <p>Экспертные консультации и техническая поддержка</p>
+                        <ul class="spec-list">
+                            <li>Техническое консультирование</li>
+                            <li>Энергоаудит систем</li>
+                            <li>Экспертиза проектов</li>
+                            <li>Подбор оптимальных решений</li>
+                            <li>Обучение персонала</li>
+                            <li>Технический надзор</li>
+                        </ul>
+                    </div>
+
+                    <!-- Специализированные системы -->
+                    <div class="spec-card">
+                        <span class="spec-icon">⚡</span>
+                        <h3>Специализированные системы</h3>
+                        <p>Установка и обслуживание специализированного оборудования</p>
+                        <ul class="spec-list">
+                            <li>Центральные пылесосы</li>
+                            <li>Системы рекуперации</li>
+                            <li>Тепловые насосы</li>
+                            <li>VRF/VRV системы</li>
+                            <li>Промышленная вентиляция</li>
+                            <li>Чистые помещения</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Benefits Section -->
+            <section class="benefits-section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Почему выбирают <span class="highlight">нас</span></h2>
+                    </div>
+
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <span class="benefit-icon">⭐</span>
+                            <h3>Высокая квалификация</h3>
+                            <p>Многолетний опыт работы с инженерными системами и постоянное повышение квалификации</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <span class="benefit-icon">🎯</span>
+                            <h3>Индивидуальный подход</h3>
+                            <p>Разрабатываем решения под конкретные задачи заказчика с учетом всех особенностей объекта</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <span class="benefit-icon">⚡</span>
+                            <h3>Оперативность</h3>
+                            <p>Быстрое реагирование на заявки, соблюдение сроков выполнения работ</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <span class="benefit-icon">🔧</span>
+                            <h3>Современное оборудование</h3>
+                            <p>Используем передовые технологии и качественное оборудование ведущих производителей</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <span class="benefit-icon">📜</span>
+                            <h3>Гарантии качества</h3>
+                            <p>Предоставляем гарантию на все виды выполненных работ и установленное оборудование</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <span class="benefit-icon">💰</span>
+                            <h3>Честные цены</h3>
+                            <p>Прозрачное ценообразование без скрытых доплат, конкурентоспособные расценки</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="contact" id="contact">
+                <div class="container">
+                    <div class="section-title">
+                        <h2><span class="highlight">Контакты</span></h2>
+                        <p>Свяжитесь с нами любым удобным способом</p>
+                    </div>
+                    <div class="contact-grid">
+                        <div class="contact-info">
+                            <div class="contact-item contact-phone-messengers">
+                                <div class="contact-phone">
+                                    <div class="contact-icon">📞</div>
+                                    <div class="contact-text">
+                                        <h4>Телефон</h4>
+                                        <a href="tel:+79216433297" class="contact-link phone-link">+7 921 643-32-97</a>
+                                    </div>
+                                </div>
+                                <div class="contact-messengers-section">
+                                    <div class="contact-icon">📱</div>
+                                    <div class="contact-text">
+                                        <h4>Мессенджеры</h4>
+                                        <div class="contact-messengers">
+                                            <a href="https://wa.me/79216433297" target="_blank" rel="noopener noreferrer" class="messenger-link whatsapp-link">
+                                                <img src="./img/whatsapp.svg" alt="WhatsApp" class="messenger-icon">
+                                                WhatsApp
+                                            </a>
+                                            <a href="https://t.me/igor_kuznetsov_hvac" target="_blank" rel="noopener noreferrer" class="messenger-link telegram-link">
+                                                <img src="./img/telegram-svgrepo-com.svg" alt="Telegram" class="messenger-icon">
+                                                Telegram
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contact-item contact-address-maps">
+                                <div class="contact-address">
+                                    <div class="contact-icon">📍</div>
+                                    <div class="contact-text">
+                                        <h4>Адрес</h4>
+                                        <p>188660, Ленинградская обл., дер. Порошкино, ул.Березовая, уч.8</p>
+                                    </div>
+                                </div>
+                                <div class="contact-maps-section">
+                                    <div class="contact-icon">🗺️</div>
+                                    <div class="contact-text">
+                                        <h4>Карты</h4>
+                                        <div class="contact-maps">
+                                            <a href="https://yandex.ru/maps/?pt=30.1234,60.5678&z=16&l=map" target="_blank" rel="noopener noreferrer" class="map-link">
+                                                <img src="./img/Yandex_Maps_icon.svg.png" alt="Яндекс Карты" class="map-icon">
+                                                Яндекс Карты
+                                            </a>
+                                            <a href="https://2gis.ru/spb/search/Порошкино%20Березовая%208" target="_blank" rel="noopener noreferrer" class="map-link">
+                                                <img src="./img/2GIS_logo.svg.png" alt="2ГИС" class="map-icon">
+                                                2ГИС
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contact-item contact-email-section">
+                                <div class="contact-icon">✉️</div>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <a href="mailto:igor.kuznetsov@gmail.com" class="contact-link email-link" onclick="copyEmail(event)">igor.kuznetsov@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="contact-item contact-form-section">
+                                <div class="contact-icon">📝</div>
+                                <div class="contact-text">
+                                    <h4>Отправить заявку</h4>
+                                    <form id="contactForm" class="inline-form">
+                                        <div class="form-group">
+                                            <label for="name">Ваше имя *</label>
+                                            <input type="text" id="name" name="name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone">Телефон</label>
+                                            <input type="tel" id="phone" name="phone">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message">Сообщение *</label>
+                                            <textarea id="message" name="message" required placeholder="Опишите ваш проект или задачу..."></textarea>
+                                        </div>
+                                        <button type="submit" class="submit-btn">Отправить заявку</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Кнопка "Быстрая заявка" -->
+    <button class="quick-request" onclick="openQuickRequest()" title="Быстрая заявка">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+        <span class="quick-request-text">Заявка</span>
+    </button>
+
+    <!-- Кнопка "Вверх" -->
+    <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()" title="Наверх">
+        <svg viewBox="0 0 24 24">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Игорь Кузнецов</h4>
+                    <p>Профессиональные решения в области автоматизации, монтажа и обслуживания инженерных систем</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Услуги</h4>
+                    <ul class="footer-links">
+                        <li><a href="./index.html#services">Проектирование</a></li>
+                        <li><a href="./index.html#services">Кондиционирование</a></li>
+                        <li><a href="./index.html#services">Отопление</a></li>
+                        <li><a href="./index.html#services">Вентиляция</a></li>
+                        <li><a href="./index.html#services">Встроенные пылесосы</a></li>
+                        <li><a href="./index.html#services">Автоматизация</a></li>
+                        <li><a href="./index.html#services">Вентиляция Aereco</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <ul class="footer-links">
+                        <li><a href="./index.html">Главная</a></li>
+                        <li><a href="./about.html">О себе</a></li>
+                        <li><a href="./examples.html">Примеры работ</a></li>
+                        <li><a href="./cooperation.html">Сотрудничество</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>О компании</h4>
+                    <p>Более 15 лет опыта в инженерных системах.</p>
+                    <p><a href="https://mundoclimatico.es" target="_blank" rel="noopener noreferrer" class="footer-link">Mundo Climatico S.L.</a></p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>Copyright © 2009 - 2025</p>
+                    <p>Перепечатка, а равно использование материалов с данного сайта, разрешена только с письменного согласия владельца.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для быстрой заявки -->
+    <div id="quickRequestModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Быстрая заявка</h3>
+                <span class="modal-close" onclick="closeQuickRequestModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="quickRequestForm">
+                    <div class="form-group">
+                        <label for="quickName">Имя *</label>
+                        <input type="text" id="quickName" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quickPhone">Телефон *</label>
+                        <input type="tel" id="quickPhone" name="phone" placeholder="+7 (___) ___-__-__" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quickMessage">Сообщение</label>
+                        <textarea id="quickMessage" name="message" rows="4" placeholder="Опишите вашу задачу или вопрос"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">Отправить заявку</button>
+                        <button type="button" class="cancel-btn" onclick="closeQuickRequestModal()">Отмена</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Игорь Кузнецов</h4>
+                    <p>Профессиональные решения в области автоматизации, монтажа и обслуживания инженерных систем</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Услуги</h4>
+                    <ul class="footer-links">
+                        <li><a href="./index.html#services">Проектирование</a></li>
+                        <li><a href="./index.html#services">Кондиционирование</a></li>
+                        <li><a href="./index.html#services">Отопление</a></li>
+                        <li><a href="./index.html#services">Вентиляция</a></li>
+                        <li><a href="./index.html#services">Встроенные пылесосы</a></li>
+                        <li><a href="./index.html#services">Автоматизация</a></li>
+                        <li><a href="./index.html#services">Вентиляция Aereco</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <ul class="footer-links">
+                        <li><a href="./index.html">Главная</a></li>
+                        <li><a href="./about.html">О себе</a></li>
+                        <li><a href="./examples.html">Примеры работ</a></li>
+                        <li><a href="./cooperation.html">Сотрудничество</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section footer-contacts">
+                    <h4>Контакты</h4>
+                    <div class="footer-contact">
+                        <p>📞 <a href="tel:+79216433297" class="footer-phone">+7 921 643-32-97</a></p>
+                        <p>📧 igor.kuznetsov@gmail.com</p>
+                        <p>📍 188660, Ленинградская обл., дер. Порошкино, ул.Березовая, уч.8</p>
+                        <div class="footer-social">
+                            <a href="https://wa.me/79216433297" target="_blank" rel="noopener noreferrer" class="social-link" title="WhatsApp">
+                                <img src="./img/whatsapp.svg" alt="WhatsApp" class="social-icon">
+                            </a>
+                            <a href="https://t.me/igor_kuznetsov_hvac" target="_blank" rel="noopener noreferrer" class="social-link" title="Telegram">
+                                <img src="./img/telegram-svgrepo-com.svg" alt="Telegram" class="social-icon">
+                            </a>
+                        </div>
+                        <div class="footer-maps">
+                            <a href="https://yandex.ru/maps/?pt=30.1234,60.5678&z=16&l=map" target="_blank" rel="noopener noreferrer" class="map-link">
+                                <img src="./img/Yandex_Maps_icon.svg.png" alt="Яндекс Карты" class="map-icon">
+                                Яндекс Карты
+                            </a>
+                            <a href="https://2gis.ru/spb/search/Порошкино%20Березовая%208" target="_blank" rel="noopener noreferrer" class="map-link">
+                                <img src="./img/2GIS_logo.svg.png" alt="2ГИС" class="map-icon">
+                                2ГИС
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>О компании</h4>
+                    <p>Более 15 лет опыта в инженерных системах.</p>
+                    <p><a href="https://mundoclimatico.es" target="_blank" rel="noopener noreferrer">Mundo Climatico S.L.</a></p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>Copyright © 2009 - 2025</p>
+                    <p>Перепечатка, а равно использование материалов с данного сайта, разрешена только с письменного согласия владельца.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Показать/скрыть кнопку "Вверх" при скролле
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        if (scrollToTopBtn) {
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            });
+        }
+
+        // Функция прокрутки наверх
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Функция открытия модального окна быстрой заявки
+        function openQuickRequest() {
+            const modal = document.getElementById('quickRequestModal');
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                
+                // Фокус на первое поле
+                const firstInput = modal.querySelector('#quickName');
+                if (firstInput) {
+                    setTimeout(() => firstInput.focus(), 100);
+                }
+            }
+        }
+
+        // Функция закрытия модального окна
+        function closeQuickRequestModal() {
+            const modal = document.getElementById('quickRequestModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                
+                // Сброс формы
+                const form = document.getElementById('quickRequestForm');
+                if (form) {
+                    form.reset();
+                }
+            }
+        }
+
+        // Закрытие модального окна при клике вне его
+        window.onclick = function(event) {
+            const quickRequestModal = document.getElementById('quickRequestModal');
+            
+            if (event.target === quickRequestModal) {
+                closeQuickRequestModal();
+            }
+        };
+
+        // Закрытие модального окна по клавише Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeQuickRequestModal();
+            }
+        });
+
+        // Обработка формы быстрой заявки
+        document.addEventListener('DOMContentLoaded', function() {
+            // Автоматическое форматирование номера телефона в быстрой заявке
+            const quickPhoneInput = document.getElementById('quickPhone');
+            if (quickPhoneInput) {
+                quickPhoneInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    
+                    if (value.length > 0) {
+                        if (value.length <= 1) {
+                            value = '+7 (' + value;
+                        } else if (value.length <= 4) {
+                            value = '+7 (' + value.substring(1, 4);
+                        } else if (value.length <= 7) {
+                            value = '+7 (' + value.substring(1, 4) + ') ' + value.substring(4, 7);
+                        } else if (value.length <= 9) {
+                            value = '+7 (' + value.substring(1, 4) + ') ' + value.substring(4, 7) + '-' + value.substring(7, 9);
+                        } else {
+                            value = '+7 (' + value.substring(1, 4) + ') ' + value.substring(4, 7) + '-' + value.substring(7, 9) + '-' + value.substring(9, 11);
+                        }
+                    }
+                    
+                    e.target.value = value;
+                });
+            }
+
+            // Обработка формы быстрой заявки
+            const quickRequestForm = document.getElementById('quickRequestForm');
+            if (quickRequestForm) {
+                quickRequestForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(this);
+                    const name = formData.get('name');
+                    const phone = formData.get('phone');
+                    const message = formData.get('message');
+                    
+                    // Валидация
+                    if (!name.trim()) {
+                        alert('Пожалуйста, введите ваше имя');
+                        return;
+                    }
+                    
+                    if (!phone.trim()) {
+                        alert('Пожалуйста, введите номер телефона');
+                        return;
+                    }
+                    
+                    // Валидация телефона
+                    const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
+                    if (!phoneRegex.test(phone.trim())) {
+                        alert('Пожалуйста, введите корректный номер телефона');
+                        return;
+                    }
+                    
+                    // Подготовка данных для mailto
+                    const subject = encodeURIComponent('Быстрая заявка с сайта ИК.рф (страница Сотрудничество)');
+                    const body = encodeURIComponent(
+                        '🚀 Быстрая заявка\n\n' +
+                        `👤 Имя: ${name}\n` +
+                        `📞 Телефон: ${phone}\n` +
+                        `💬 Сообщение: ${message || 'Не указано'}\n\n` +
+                        `📄 Страница: Сотрудничество\n` +
+                        `🕐 Время: ${new Date().toLocaleString('ru-RU')}`
+                    );
+                    
+                    // Создание mailto ссылки
+                    const mailtoLink = `mailto:igor.kuznetsov@gmail.com?subject=${subject}&body=${body}`;
+                    
+                    // Открытие почтового клиента
+                    window.location.href = mailtoLink;
+                    
+                    // Уведомление пользователя
+                    alert('Заявка подготовлена! Проверьте вашу почтовую программу для отправки.');
+                    
+                    // Закрытие модального окна и сброс формы
+                    closeQuickRequestModal();
+                });
+            }
+
+            // Обработка формы сотрудничества
+            const cooperationForm = document.getElementById('cooperationForm');
+            if (cooperationForm) {
+                cooperationForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(this);
+                    const name = formData.get('name');
+                    const phone = formData.get('phone');
+                    const email = formData.get('email');
+                    const message = formData.get('message');
+                    
+                    // Валидация
+                    if (!name.trim()) {
+                        alert('Пожалуйста, введите ваше имя или название компании');
+                        return;
+                    }
+                    
+                    if (!message.trim()) {
+                        alert('Пожалуйста, опишите ваше предложение о сотрудничестве');
+                        return;
+                    }
+                    
+                    // Подготовка данных для mailto
+                    const subject = encodeURIComponent('Предложение о сотрудничестве с сайта ИК.рф');
+                    const body = encodeURIComponent(
+                        '🤝 Предложение о сотрудничестве\n\n' +
+                        `👤 Имя/Компания: ${name}\n` +
+                        `📞 Телефон: ${phone || 'Не указан'}\n` +
+                        `📧 Email: ${email || 'Не указан'}\n\n` +
+                        `💼 Предложение:\n${message}\n\n` +
+                        `📄 Страница: Сотрудничество\n` +
+                        `🕐 Время: ${new Date().toLocaleString('ru-RU')}`
+                    );
+                    
+                    // Создание mailto ссылки
+                    const mailtoLink = `mailto:igor.kuznetsov@gmail.com?subject=${subject}&body=${body}`;
+                    
+                    // Открытие почтового клиента
+                    window.location.href = mailtoLink;
+                    
+                    // Уведомление пользователю
+                    alert('Предложение о сотрудничестве подготовлено! Проверьте вашу почтовую программу для отправки.');
+                    
+                    // Сброс формы
+                    this.reset();
+                });
+            }
+        });
+
+        // Функция копирования email
+        function copyEmail(event) {
+            event.preventDefault();
+            const email = 'igor.kuznetsov@gmail.com';
+            
+            if (navigator.clipboard && window.isSecureContext) {
+                // Использование современного Clipboard API
+                navigator.clipboard.writeText(email).then(function() {
+                    showNotification('📧 Email скопирован в буфер обмена!');
+                }).catch(function(err) {
+                    console.error('Ошибка копирования: ', err);
+                    fallbackCopyTextToClipboard(email);
+                });
+            } else {
+                // Fallback для старых браузеров
+                fallbackCopyTextToClipboard(email);
+            }
+        }
+
+        // Альтернативный метод копирования для старых браузеров
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showNotification('📧 Email скопирован в буфер обмена!');
+            } catch (err) {
+                console.error('Fallback: Не удалось скопировать', err);
+                showNotification('❌ Не удалось скопировать. Email: ' + text);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        // Функция показа уведомления
+        function showNotification(message) {
+            // Удаляем существующее уведомление, если есть
+            const existingNotification = document.querySelector('.copy-notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Создаем новое уведомление
+            const notification = document.createElement('div');
+            notification.className = 'copy-notification';
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #0d7377, #13a6b2);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                z-index: 10000;
+                font-weight: 600;
+                animation: slideIn 0.3s ease-out;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Удаляем уведомление через 3 секунды
+            setTimeout(function() {
+                notification.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(function() {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Активная ссылка в хедере по текущей странице (без подсветки Контактов)
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.nav-menu a');
+            const current = (location.pathname.split('/').pop() || 'index.html');
+            links.forEach(a => {
+                const text = (a.textContent || '').trim().toLowerCase();
+                if (text === 'контакты') return;
+                const href = a.getAttribute('href') || '';
+                let file = '';
+                if (href.startsWith('#')) {
+                    file = current;
+                } else {
+                    file = href.split('#')[0].replace(/^\.\//, '');
+                    if (file === '') file = current;
+                }
+                if (file === current) a.classList.add('active'); else a.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html> 
