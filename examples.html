@@ -925,6 +925,66 @@
         }
         .form-actions .cancel-btn:hover { background: #e9ecef; border-color: #adb5bd; color: #495057; }
 
+        /* Стили для кнопок мессенджеров в модальном окне */
+        .messenger-buttons {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .messenger-buttons p {
+            margin: 0 0 15px 0;
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .messenger-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .messenger-links .messenger-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .messenger-links .whatsapp-link {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: white;
+        }
+
+        .messenger-links .whatsapp-link:hover {
+            background: linear-gradient(135deg, #128c7e, #25d366);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .messenger-links .telegram-link {
+            background: linear-gradient(135deg, #0088cc, #006699);
+            color: white;
+        }
+
+        .messenger-links .telegram-link:hover {
+            background: linear-gradient(135deg, #006699, #0088cc);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.3);
+        }
+
+        .messenger-links .messenger-icon {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) invert(1);
+        }
+
         /* РђРґР°РїС‚РёРІРЅРѕСЃС‚СЊ РґР»СЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° */
         @media (max-width: 768px) {
             .modal-content { width: 95%; margin: 10% auto; }
@@ -2272,7 +2332,22 @@
                     
                     <div class="form-actions">
                         <button type="submit" class="submit-btn">РћС‚РїСЂР°РІРёС‚СЊ Р·Р°СЏРІРєСѓ</button>
-                        <button type="button" class="cancel-btn" onclick="closeQuickRequestModal()">РћС‚РјРµРЅР°</button>
+                        <button type="button" class="cancel-btn" onclick="closeQuickRequestModal()">Отмена</button>
+                    </div>
+                    
+                    <div class="messenger-buttons">
+                        <p>Или свяжитесь с нами через мессенджеры:</p>
+                        <div class="messenger-links">
+                            <a href="https://wa.me/79216433297" target="_blank" rel="noopener noreferrer" class="messenger-link whatsapp-link" title="WhatsApp">
+                                <img src="./img/whatsapp.svg" alt="WhatsApp" class="messenger-icon">
+                                <span>WhatsApp</span>
+                            </a>
+                            <a href="https://t.me/igor_kuznetsov_hvac" target="_blank" rel="noopener noreferrer" class="messenger-link telegram-link" title="Telegram">
+                                <img src="./img/telegram-svgrepo-com.svg" alt="Telegram" class="messenger-icon">
+                                <span>Telegram</span>
+                            </a>
+                        </div>
+                    </div>
                     </div>
                 </form>
             </div>
@@ -2300,3 +2375,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 </html> 
+
